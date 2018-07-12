@@ -53,7 +53,7 @@ async function loadSkills(publicKey){
 			records.map((data,index)=>
 							{
 							var skill = data.memo;
-							if(skill!=undefined){
+							if(skill!=undefined && data.source_account!=publicKey){
 								if (array[skill]){
 									array[skill]++;
 								}else{
