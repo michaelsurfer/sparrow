@@ -3,8 +3,10 @@ var rp = require('request-promise');
 var express = require('express');
 var app = express();
 var cors = require('cors');
-app.use(cors());
+const path = require('path');
 
+app.use(cors());
+app.use( express.static( `build` ) );
 
 const server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
@@ -109,7 +111,7 @@ loadSkills(receiverPublicKey);
 
 
 app.get('/',function(req,res){
-	res.send('hello world');
+	res.sendFile(path.join(__dirname, '/build/index.html'));
 });
 
 app.get('/loadSkills/:address',async function(req,res){
@@ -197,5 +199,5 @@ app.get('/sendFund/:from-:to-:amount-:skill',async function(req,res){
  });
 
 app.listen(8001,function(){
-	console.log('server running on 8000')
+	console.log('server running on 8001')
 });
