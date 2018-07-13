@@ -12,6 +12,11 @@ app.get('/',function(req,res){
 	res.sendFile(path.join(__dirname, '/build/index.html'));
 });
 
+app.get('*',function(req,res){
+	res.sendFile(path.join(__dirname, '/build/index.html'));
+});
+
+
 app.listen(8000,function(){
 	console.log('server running on 8000')
 });
